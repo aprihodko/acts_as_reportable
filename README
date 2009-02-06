@@ -1,0 +1,59 @@
+Acts As Reportable
+=================
+
+Allows for content_reports to be added to multiple and different models.
+
+== Resources
+
+Install
+ * Run the following command:
+ 
+ script/plugin install http://railslink.com/svn/acts_as_reportable
+ 
+ * Create a new rails migration and add the following self.up and self.down methods
+ 
+  def self.up
+    create_table "content_reports", :force => true do |t|
+      t.column "content_type", :int, :default => 0
+      t.column "comment", :string, :limit => 255, :default => ""
+      t.column "reportable_type", :string, :limit => 15, :default => "", :null => false
+      t.column "reportable_id", :integer, :default => 0, :null => false
+      t.column "user_id", :integer, :default => 0, :null => false
+      t.column "created_at", :datetime, :null => false
+    end
+  
+    add_index "content_reports", ["user_id"], :name => "fk_content_reports_user"
+  end
+
+  def self.down
+    drop_table :content_reports
+  end
+
+== Usage
+ 
+ * Make you ActiveRecord model act as reportable.
+ 
+ class Model < ActiveRecord::Base
+ 	acts_as_reportable
+ end
+ 
+ * Add a content_report to a model instance
+ 
+ model = Model.new
+ content_report = ContentReport.new
+ content_report.type = 
+ content_report.content = 'Some comment'
+ model.content_reports << content_report
+ 
+ * Each content_report reference reportable object
+ 
+ model = Model.find(1)
+ model.content_reports.get(0).reportable == model
+
+== Credits
+
+This plugin is very similar by Acts As Commentable.
+
+== More
+
+
