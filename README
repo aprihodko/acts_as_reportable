@@ -41,7 +41,7 @@ Install
  
  model = Model.new
  content_report = ContentReport.new
- content_report.type = 
+ content_report.type = 1 # should be any value of the content_report_types array
  content_report.content = 'Some comment'
  model.content_reports << content_report
  
