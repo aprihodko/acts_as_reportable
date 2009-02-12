@@ -1,14 +1,16 @@
 Acts As Reportable
 =================
 
-Allows content reports to be added to your models, i.e. you will aloow users marking content at your site as Offensive, Inappropriate, Spam, Pornography, etc.
+Allows content reports to be added to your models.
+With this plug-in you will allow users marking content as Offensive, Inappropriate, Spam, Pornography, etc.
+To make your own content types, just override the ContentReport.content_report_types array with your items.
 
 == Resources
 
 Install
  * Run the following command:
  
- script/plugin install git://github.com/aprihodko/acts_as_reportable.git
+	script/plugin install git://github.com/aprihodko/acts_as_reportable.git
  
  * Create a new rails migration and add the following self.up and self.down methods
  
@@ -41,7 +43,7 @@ Install
  
  model = Model.new
  content_report = ContentReport.new
- content_report.type = 1 # should be any value of the content_report_types array
+ content_report.type = 1 # should be any value of the ContentReport.content_report_types array
  content_report.content = 'Some comment'
  model.content_reports << content_report
  
