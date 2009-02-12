@@ -1,14 +1,14 @@
 Acts As Reportable
 =================
 
-Allows for content_reports to be added to multiple and different models.
+Allows content reports to be added to your models, i.e. you will aloow users marking content at your site as Offensive, Inappropriate, Spam, Pornography, etc.
 
 == Resources
 
 Install
  * Run the following command:
  
- script/plugin install http://railslink.com/svn/acts_as_reportable
+ script/plugin install git://github.com/aprihodko/acts_as_reportable.git
  
  * Create a new rails migration and add the following self.up and self.down methods
  
